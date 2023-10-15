@@ -1,0 +1,3 @@
+<!-- Add files which you want to ignore with eslint -->
+
+.eslintrc.js
