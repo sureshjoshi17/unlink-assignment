@@ -12,6 +12,10 @@
     "coverage": "nyc npm run test",
     "start": "nodemon index.js"
   },
+  "pre-push": [
+    "lint",
+    "test"
+  ],
   "keywords": [
     "Xendit"
   ],
@@ -28,6 +32,7 @@
     "eslint": "^8.51.0",
     "mocha": "^6.1.4",
     "nyc": "^15.1.0",
+    "pre-push": "^0.1.4",
     "supertest": "^4.0.2"
   }
 }
