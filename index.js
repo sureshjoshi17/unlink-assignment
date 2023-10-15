@@ -15,6 +15,9 @@ const db = new sqlite3.Database(':memory:');
 
 const buildSchemas = require('./src/schemas');
 
+const logger = require('./logger');
+
+
 db.serialize(() => {
     buildSchemas(db);
 
@@ -23,5 +26,5 @@ db.serialize(() => {
     // attach swagger for api documentation
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-    app.listen(port, () => console.log(`App started and listening on port ${port}`));
+    app.listen(port, () => logger.info(`App started and listening on port ${port}`));
 });
