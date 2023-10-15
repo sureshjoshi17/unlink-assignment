@@ -1,0 +1,210 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Node js assignment",
+    "description": "The goal of these exercises are to assess your proficiency in software engineering that is related to the daily work that we do at Paymentoptions. Please follow the instructions below to complete the assessment.",
+    "contact": {
+        "email": "developer@gmail.com"
+    },
+    "version": "1.0.0",
+    "termsOfService":"http://swagger.io/terms/",
+    "license":{
+        "name":"Apache 2.0",
+        "url":"http://www.apache.org/licenses/LICENSE-2.0.html"
+    }    
+  },
+  "basePath": "/",
+  "tags":[
+    {
+    "name":"Ride",
+    "description":"Operations about Rider",
+    "externalDocs":{
+        "description":"Find out more about this app",
+        "url":""
+        }
+    }
+],  
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json",
+    "application/x-www-form-urlencoded",
+    "multipart/form-data"
+  ],
+  "produces": [
+    "application/json"
+  ],
+ 
+  "paths": {
+    "/rides": {
+      "post": {
+        "tags": [
+          "Ride"
+        ],
+        "description": "This post api adds new rides in db",
+        "consumes": [
+            "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "start_lat",
+            "in": "formData",
+            "description": "Start latitude must be between -90 - 90 and -180 to 180 degrees respectively",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "start_long",
+            "in": "formData",
+            "description": "Start longitude must be between -90 - 90 and -180 to 180 degrees respectively",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "end_lat",
+            "in": "formData",
+            "description": "End latitude must be between -90 - 90 and -180 to 180 degrees respectively",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "end_long",
+            "in": "formData",
+            "description": "End longitude must be between -90 - 90 and -180 to 180 degrees respectively",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "rider_name",
+            "in": "formData",
+            "description": "Enter rider name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "driver_name",
+            "in": "formData",
+            "description": "Enter driver name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "driver_vehicle",
+            "in": "formData",
+            "description": "Enter driver vehicle detail",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+            "200": {
+                "description": "Successfully"
+            },
+            "500": {
+                "description": "Internal server error"
+            }
+        },
+        "security": [
+            {
+                "basicAuth": [
+                    "Username: ",
+                    "Password: "
+                ]
+            }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Ride"
+        ],
+        "description": "This api return all this riders with pagination",
+        "consumes": [
+            "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Enter Page number",
+            "type": "number"
+          },
+          {
+            "name": "limit",
+            "in": "formData",
+            "description": "Enter page limit",
+            "type": "number"
+          }
+        ],
+        "responses": {
+            "200": {
+                "description": "Successfully"
+            },
+            "500": {
+                "description": "Internal server error"
+            }
+        },
+        "security": [
+            {
+                "basicAuth": [
+                    "Username: ",
+                    "Password: "
+                ]
+            }
+        ]
+      }
+    },
+
+    "/rides/:id": {
+      "get": {
+        "tags": [
+          "Ride"
+        ],
+        "description":"This api returns rides details for specified rides id",
+        "consumes": [
+            "multipart/form-data"
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Enter Ride Id",
+            "type": "number"
+          }
+        ],
+        "responses": {
+            "200": {
+                "description": "Successfully"
+            },
+            "401": {
+                "description": "Unauthorized"
+            }
+        },
+        "security": [
+            {
+                "basicAuth": [
+                    "Username: ",
+                    "Password: "
+                ]
+            }
+        ]
+      }
+    }
+  },
+  
+  "securityDefinitions": {
+        "basicAuth": {
+            "type": "basic"
+        }
+    }
+}
