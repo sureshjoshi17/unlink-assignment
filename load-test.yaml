@@ -1,0 +1,11 @@
+config:
+  target: "http://localhost:8010"
+  phases:
+    - duration: 30
+      arrivalRate: 10
+
+scenarios:
+  - name: "get all ride api load testing"
+    flow:
+      - get:
+          url: "/rides"
